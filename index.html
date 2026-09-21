@@ -18,12 +18,12 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        /* Bright Colorful Sun & Pink Gradient Background */
+        /* Bright Sunny Morning Gradient Background */
         body {
-            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #ffecd2, #fcb69f);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: #333333; /* Dark text for readable contrast on light backgrounds */
+            background: linear-gradient(120deg, #ffe0e9, #ffecd2, #fcb69f, #ffebf0);
+            background-size: 300% 300%;
+            animation: skyMove 20s ease infinite;
+            color: #333333;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -32,38 +32,54 @@
             padding: 3rem 1rem;
             position: relative;
             overflow-x: hidden;
+            overflow-y: auto;
         }
 
-        @keyframes gradientBG {
+        @keyframes skyMove {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* Floating Light Orbs (Sun Yellow and Hot Pink) */
-        .orb-1, .orb-2 {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
+        /* Container for the falling Sakura petals */
+        #sakura-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Makes sure you can still click buttons through the petals */
             z-index: 0;
-            opacity: 0.6;
-            animation: float 10s infinite alternate;
-        }
-        .orb-1 {
-            width: 300px; height: 300px;
-            background: #ffea00; /* Sun Yellow */
-            top: 5%; left: -50px;
-        }
-        .orb-2 {
-            width: 250px; height: 250px;
-            background: #ff1493; /* Deep Pink */
-            bottom: 5%; right: -50px;
-            animation-delay: -5s;
+            overflow: hidden;
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px) scale(1); }
-            100% { transform: translateY(30px) scale(1.2); }
+        /* Sakura Petal Shape and Animation */
+        .petal {
+            position: absolute;
+            background: linear-gradient(135deg, #ffb7c5, #ff8da1);
+            border-radius: 15px 0px 15px 0px; /* Makes it look like a leaf/petal */
+            box-shadow: 0 0 10px rgba(255, 183, 197, 0.6);
+            opacity: 0;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -10%;
+                opacity: 0;
+                transform: translateX(0) rotate(0deg);
+            }
+            10% {
+                opacity: 0.9;
+            }
+            80% {
+                opacity: 0.9;
+            }
+            100% {
+                top: 110%;
+                opacity: 0;
+                transform: translateX(150px) rotate(360deg);
+            }
         }
 
         header {
@@ -85,17 +101,16 @@
             box-shadow: 0 10px 25px rgba(255, 105, 180, 0.4);
             margin-bottom: 1rem;
             background-color: #ffecd2;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .profile-pic:hover {
-            transform: scale(1.05) rotate(5deg);
+            transform: scale(1.1) rotate(5deg);
         }
 
         h1 {
             font-size: 3.2rem;
             font-weight: 700;
-            /* Vibrant Pink/Orange text gradient */
             background: linear-gradient(90deg, #ff0844, #ffb199);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -120,7 +135,7 @@
 
         /* Bright Glass Cards */
         .card {
-            background: rgba(255, 255, 255, 0.45); /* White glassy transparent */
+            background: rgba(255, 255, 255, 0.45);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.8);
@@ -132,7 +147,7 @@
             align-items: center;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 8px 32px rgba(255, 105, 180, 0.15); /* Soft pink shadow */
+            box-shadow: 0 8px 32px rgba(255, 105, 180, 0.15);
             transition: all 0.3s ease;
         }
 
@@ -185,13 +200,13 @@
             font-weight: 600;
         }
 
-        /* Brand Colors for Light Mode */
+        /* Brand Colors */
         .discord::before { background: #5865F2; }
         .discord .card-icon { color: #5865F2; }
 
         .tiktok::before { background: linear-gradient(180deg, #00f2fe, #ff0050); }
-        .tiktok .card-icon { color: #000000; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));}
-        .tiktok h2 { text-shadow: 1px 1px 0px rgba(255,0,80,0.5), -1px -1px 0px rgba(0,242,254,0.5); }
+        .tiktok .card-icon { color: #000000; }
+        .tiktok h2 { text-shadow: 1px 1px 0px rgba(255,0,80,0.4), -1px -1px 0px rgba(0,242,254,0.4); }
 
         .wa-channel::before { background: #25D366; }
         .wa-channel .card-icon { color: #25D366; }
@@ -222,62 +237,56 @@
 </head>
 <body>
 
-    <!-- Ambient moving orbs for background depth -->
-    <div class="orb-1"></div>
-    <div class="orb-2"></div>
+    <!-- Sakura Animation Layer -->
+    <div id="sakura-container"></div>
 
     <header>
-        <!-- This is where your Minecraft Skin Image is loaded -->
+        <!-- Your Minecraft Skin Image -->
         <img src="Tak berjudul41_20260918202011.png" alt="ViuMC Character" class="profile-pic">
         
         <h1>ViuMC</h1>
-        <p>A little place for everything Viu</p>
+        <p>Connect with our official platforms</p>
     </header>
 
     <main class="links-container">
         
-        <!-- Discord -->
         <a href="https://discord.gg/z5phxJZ6b" target="_blank" class="card discord">
             <div class="card-icon"><i class="fa-brands fa-discord"></i></div>
             <div class="card-text">
                 <h2>Discord</h2>
-                <p>Tempat ngobrol dan ketemu Viu</p>
+                <p>Join our community server</p>
             </div>
         </a>
 
-        <!-- TikTok -->
         <a href="https://www.tiktok.com/@viu.mc?_r=1&_t=ZS-99uKXKsMHQ7" target="_blank" class="card tiktok">
             <div class="card-icon"><i class="fa-brands fa-tiktok"></i></div>
             <div class="card-text">
                 <h2>TikTok</h2>
-                <p>Tempat aku upload clip Minecraft, eksperimen random, dan hal-hal yang entah kenapa masuk FYP</p>
+                <p>Watch our latest viral clips</p>
             </div>
         </a>
 
-        <!-- WhatsApp Channel -->
         <a href="https://whatsapp.com/channel/0029Vb6wEEiL2AU2nDW1X62j" target="_blank" class="card wa-channel">
             <div class="card-icon"><i class="fa-brands fa-whatsapp"></i></div>
             <div class="card-text">
                 <h2>WA Channel</h2>
-                <p>Bukan channel server. Isinya lebih ke update ViuMC, proses ngonten, dan random post yang kepikiran</p>
+                <p>Follow for instant server updates</p>
             </div>
         </a>
 
-        <!-- WhatsApp Chat / QR -->
         <a href="https://wa.me/qr/GYII7XQQO4WXF1" target="_blank" class="card wa-chat">
             <div class="card-icon"><i class="fa-solid fa-message"></i></div>
             <div class="card-text">
                 <h2>WA Contact</h2>
-                <p>Kalau mau ngobrol langsung sama Viu</p>
+                <p>Chat directly with the admin</p>
             </div>
         </a>
 
-        <!-- Saweria Donation -->
         <a href="YOUR_SAWERIA_LINK_HERE" target="_blank" class="card saweria">
             <div class="card-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
             <div class="card-text">
                 <h2>Saweria</h2>
-                <p>Support ViuMC and Keep ViuMC alive</p>
+                <p>Support ViuMC and keep us running</p>
             </div>
         </a>
 
@@ -286,6 +295,36 @@
     <footer>
         <p>&copy; 2026 ViuMC. All rights reserved.</p>
     </footer>
+
+    <!-- JavaScript to generate falling Sakura Petals -->
+    <script>
+        const container = document.getElementById('sakura-container');
+        
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            
+            // Randomize size, starting position, and falling speed
+            const size = Math.random() * 10 + 10; // Between 10px and 20px
+            petal.style.width = `${size}px`;
+            petal.style.height = `${size}px`;
+            
+            petal.style.left = `${Math.random() * 100}vw`; // Random horizontal start
+            
+            const duration = Math.random() * 4 + 5; // Between 5s and 9s
+            petal.style.animationDuration = `${duration}s`;
+            
+            container.appendChild(petal);
+            
+            // Remove the petal from the code after it finishes falling to prevent lag
+            setTimeout(() => {
+                petal.remove();
+            }, duration * 1000);
+        }
+
+        // Spawn a new petal every 400 milliseconds
+        setInterval(createPetal, 400);
+    </script>
 
 </body>
 </html>
