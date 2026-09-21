@@ -29,7 +29,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 2rem 1rem; /* Padding layar diperkecil */
+            padding: 2rem 1rem;
             position: relative;
             overflow-x: hidden;
             overflow-y: auto;
@@ -41,7 +41,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Container for the falling Sakura petals */
+        /* --- SAKURA CONTAINER --- */
         #sakura-container {
             position: fixed;
             top: 0;
@@ -49,11 +49,10 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 0;
+            z-index: 1; /* Di atas partikel cahaya, di bawah tombol */
             overflow: hidden;
         }
 
-        /* Sakura Petal Shape and Animation */
         .petal {
             position: absolute;
             background: linear-gradient(135deg, #ffb7c5, #ff8da1);
@@ -70,10 +69,45 @@
             100% { top: 110%; opacity: 0; transform: translateX(150px) rotate(360deg); }
         }
 
+        /* --- MAGIC DUST CONTAINER (PARTIKEL CAHAYA BARU) --- */
+        #dust-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0; /* Di lapisan paling bawah */
+            overflow: hidden;
+        }
+
+        .dust {
+            position: absolute;
+            background: #ffffff; /* Warna putih bercahaya */
+            border-radius: 50%;
+            box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 236, 210, 0.8);
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                bottom: -5%;
+                opacity: 0;
+                transform: translateX(0) scale(0.5);
+            }
+            30% { opacity: 0.6; }
+            70% { opacity: 0.6; }
+            100% {
+                bottom: 105%;
+                opacity: 0;
+                transform: translateX(-50px) scale(1.2);
+            }
+        }
+
         header {
             text-align: center;
-            margin-bottom: 2rem; /* Jarak header ke kotak diperkecil */
-            z-index: 1;
+            margin-bottom: 2rem;
+            z-index: 2; /* Supaya selalu di atas partikel */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -81,7 +115,7 @@
 
         /* Profile Picture Styling */
         .profile-pic {
-            width: 110px; /* Ukuran foto diperkecil sedikit */
+            width: 110px;
             height: 110px;
             border-radius: 50%;
             object-fit: cover;
@@ -97,7 +131,7 @@
         }
 
         h1 {
-            font-size: 2.8rem; /* Ukuran judul diperkecil */
+            font-size: 2.8rem;
             font-weight: 700;
             background: linear-gradient(90deg, #ff0844, #ffb199);
             -webkit-background-clip: text;
@@ -108,27 +142,27 @@
 
         header p {
             color: #555555;
-            font-size: 1rem; /* Ukuran deskripsi diperkecil */
+            font-size: 1rem;
             font-weight: 600;
         }
 
         .links-container {
             display: flex;
             flex-direction: column;
-            gap: 0.9rem; /* Jarak antar kotak diperkecil */
+            gap: 0.9rem;
             width: 100%;
-            max-width: 450px; /* Lebar maksimal kotak diperkecil */
-            z-index: 1;
+            max-width: 450px;
+            z-index: 2; /* Supaya bisa diklik */
         }
 
-        /* --- BAGIAN KOTAK (CARD) YANG DIPERKECIL --- */
+        /* Cards */
         .card {
             background: rgba(255, 255, 255, 0.45);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.8);
             border-radius: 14px;
-            padding: 0.8rem 1.2rem; /* <-- INI YANG MEMBUAT KOTAK LEBIH SLIM */
+            padding: 0.8rem 1.2rem;
             text-decoration: none;
             color: #333333;
             display: flex;
@@ -158,9 +192,8 @@
             width: 10px;
         }
 
-        /* --- ICON DIPERKECIL --- */
         .card-icon {
-            font-size: 1.8rem; /* Ukuran icon lebih kecil */
+            font-size: 1.8rem;
             width: 50px;
             display: flex;
             justify-content: center;
@@ -172,20 +205,19 @@
             transform: scale(1.15);
         }
 
-        /* --- TEKS DI DALAM KOTAK DIPERKECIL --- */
         .card-text {
             display: flex;
             flex-direction: column;
         }
 
         .card h2 {
-            font-size: 1.1rem; /* Judul sosmed lebih kecil */
+            font-size: 1.1rem;
             font-weight: 700;
-            margin-bottom: 0; /* Jarak teks h2 ke p dihilangkan agar rapat */
+            margin-bottom: 0;
         }
 
         .card p {
-            font-size: 0.75rem; /* Deskripsi sosmed lebih kecil */
+            font-size: 0.75rem;
             color: #666666;
             font-weight: 600;
         }
@@ -212,10 +244,9 @@
             color: #666666;
             font-size: 0.85rem;
             font-weight: 600;
-            z-index: 1;
+            z-index: 2;
         }
 
-        /* Tampilan khusus untuk layar HP agar lebih pas lagi */
         @media (max-width: 480px) {
             h1 { font-size: 2.3rem; }
             .card { padding: 0.7rem 1rem; }
@@ -227,24 +258,25 @@
 </head>
 <body>
 
+    <!-- Magic Glowing Dust Animation Layer -->
+    <div id="dust-container"></div>
+
     <!-- Sakura Animation Layer -->
     <div id="sakura-container"></div>
 
     <header>
-        <!-- Your Minecraft Skin Image -->
         <img src="Tak berjudul41_20260918202011.png" alt="ViuMC Character" class="profile-pic">
         
         <h1>ViuMC</h1>
-        <p>Connect with ViuMC official platforms</p>
+        <p>Connect with our official platforms</p>
     </header>
 
     <main class="links-container">
-        
         <a href="https://discord.gg/z5phxJZ6b" target="_blank" class="card discord">
             <div class="card-icon"><i class="fa-brands fa-discord"></i></div>
             <div class="card-text">
                 <h2>Discord</h2>
-                <p>Join ViuMC community server</p>
+                <p>Join ViuMC community server, buat ngobrol bareng</p>
             </div>
         </a>
 
@@ -252,7 +284,7 @@
             <div class="card-icon"><i class="fa-brands fa-tiktok"></i></div>
             <div class="card-text">
                 <h2>TikTok</h2>
-                <p>Watch our latest viral clips</p>
+                <p>Watch ViuMC latest viral clips</p>
             </div>
         </a>
 
@@ -260,7 +292,7 @@
             <div class="card-icon"><i class="fa-brands fa-whatsapp"></i></div>
             <div class="card-text">
                 <h2>WA Channel</h2>
-                <p>Follow for instant randomly Viu updates</p>
+                <p>Follow for instant updates dari Viu</p>
             </div>
         </a>
 
@@ -268,50 +300,64 @@
             <div class="card-icon"><i class="fa-solid fa-message"></i></div>
             <div class="card-text">
                 <h2>WA Contact</h2>
-                <p>Chat directly with Viu</p>
+                <p>Chat langsung dengan Viu</p>
             </div>
         </a>
 
-        <!-- JANGAN LUPA GANTI LINK SAWERIA DI BAWAH INI -->
         <a href="YOUR_SAWERIA_LINK_HERE" target="_blank" class="card saweria">
             <div class="card-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
             <div class="card-text">
                 <h2>Saweria</h2>
-                <p>Support ViuMC and keep ViuMC alive</p>
+                <p>Support ViuMC and keep me Alive</p>
             </div>
         </a>
-
     </main>
 
     <footer>
-        <p>&copy; 2026 ViuMC. All rights reserved.</p>
+        <p>&copy; 2026 ViuMC. Dengan sentuhan kerja keras.</p>
     </footer>
 
-    <!-- JavaScript to generate falling Sakura Petals -->
+    <!-- JavaScript untuk Sakura & Dust -->
     <script>
-        const container = document.getElementById('sakura-container');
-        
+        // --- SAKURA PETALS ---
+        const sakuraContainer = document.getElementById('sakura-container');
         function createPetal() {
             const petal = document.createElement('div');
             petal.classList.add('petal');
             
-            const size = Math.random() * 8 + 8; // Ukuran sakura sedikit diperkecil
+            const size = Math.random() * 8 + 8; 
             petal.style.width = `${size}px`;
             petal.style.height = `${size}px`;
-            
             petal.style.left = `${Math.random() * 100}vw`; 
             
             const duration = Math.random() * 4 + 5; 
             petal.style.animationDuration = `${duration}s`;
             
-            container.appendChild(petal);
-            
-            setTimeout(() => {
-                petal.remove();
-            }, duration * 1000);
+            sakuraContainer.appendChild(petal);
+            setTimeout(() => { petal.remove(); }, duration * 1000);
         }
-
         setInterval(createPetal, 400);
+
+        // --- MAGIC DUST (PARTIKEL CAHAYA) ---
+        const dustContainer = document.getElementById('dust-container');
+        function createDust() {
+            const dust = document.createElement('div');
+            dust.classList.add('dust');
+            
+            const size = Math.random() * 3 + 1; // Ukuran partikel sangat kecil (1-4px)
+            dust.style.width = `${size}px`;
+            dust.style.height = `${size}px`;
+            
+            dust.style.left = `${Math.random() * 100}vw`; // Posisi awal horizontal
+            
+            const duration = Math.random() * 6 + 4; // Bergerak perlahan ke atas (4-10 detik)
+            dust.style.animationDuration = `${duration}s`;
+            
+            dustContainer.appendChild(dust);
+            setTimeout(() => { dust.remove(); }, duration * 1000);
+        }
+        // Membuat partikel dust lebih sering muncul
+        setInterval(createDust, 150);
     </script>
 
 </body>
