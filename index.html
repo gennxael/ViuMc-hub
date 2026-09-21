@@ -29,7 +29,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 3rem 1rem;
+            padding: 2rem 1rem; /* Padding layar diperkecil */
             position: relative;
             overflow-x: hidden;
             overflow-y: auto;
@@ -48,7 +48,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none; /* Makes sure you can still click buttons through the petals */
+            pointer-events: none;
             z-index: 0;
             overflow: hidden;
         }
@@ -57,34 +57,22 @@
         .petal {
             position: absolute;
             background: linear-gradient(135deg, #ffb7c5, #ff8da1);
-            border-radius: 15px 0px 15px 0px; /* Makes it look like a leaf/petal */
+            border-radius: 15px 0px 15px 0px;
             box-shadow: 0 0 10px rgba(255, 183, 197, 0.6);
             opacity: 0;
             animation: fall linear infinite;
         }
 
         @keyframes fall {
-            0% {
-                top: -10%;
-                opacity: 0;
-                transform: translateX(0) rotate(0deg);
-            }
-            10% {
-                opacity: 0.9;
-            }
-            80% {
-                opacity: 0.9;
-            }
-            100% {
-                top: 110%;
-                opacity: 0;
-                transform: translateX(150px) rotate(360deg);
-            }
+            0% { top: -10%; opacity: 0; transform: translateX(0) rotate(0deg); }
+            10% { opacity: 0.9; }
+            80% { opacity: 0.9; }
+            100% { top: 110%; opacity: 0; transform: translateX(150px) rotate(360deg); }
         }
 
         header {
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem; /* Jarak header ke kotak diperkecil */
             z-index: 1;
             display: flex;
             flex-direction: column;
@@ -93,15 +81,15 @@
 
         /* Profile Picture Styling */
         .profile-pic {
-            width: 130px;
-            height: 130px;
+            width: 110px; /* Ukuran foto diperkecil sedikit */
+            height: 110px;
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid #ffffff;
-            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.4);
-            margin-bottom: 1rem;
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
+            margin-bottom: 0.8rem;
             background-color: #ffecd2;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.4s ease;
         }
         
         .profile-pic:hover {
@@ -109,7 +97,7 @@
         }
 
         h1 {
-            font-size: 3.2rem;
+            font-size: 2.8rem; /* Ukuran judul diperkecil */
             font-weight: 700;
             background: linear-gradient(90deg, #ff0844, #ffb199);
             -webkit-background-clip: text;
@@ -120,34 +108,34 @@
 
         header p {
             color: #555555;
-            font-size: 1.1rem;
+            font-size: 1rem; /* Ukuran deskripsi diperkecil */
             font-weight: 600;
         }
 
         .links-container {
             display: flex;
             flex-direction: column;
-            gap: 1.2rem;
+            gap: 0.9rem; /* Jarak antar kotak diperkecil */
             width: 100%;
-            max-width: 500px;
+            max-width: 450px; /* Lebar maksimal kotak diperkecil */
             z-index: 1;
         }
 
-        /* Bright Glass Cards */
+        /* --- BAGIAN KOTAK (CARD) YANG DIPERKECIL --- */
         .card {
             background: rgba(255, 255, 255, 0.45);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 16px;
-            padding: 1.2rem 1.5rem;
+            border-radius: 14px;
+            padding: 0.8rem 1.2rem; /* <-- INI YANG MEMBUAT KOTAK LEBIH SLIM */
             text-decoration: none;
             color: #333333;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 8px 32px rgba(255, 105, 180, 0.15);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.15);
             transition: all 0.3s ease;
         }
 
@@ -156,26 +144,27 @@
             position: absolute;
             left: 0;
             top: 0;
-            width: 6px;
+            width: 5px;
             height: 100%;
             transition: width 0.3s ease;
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             background: rgba(255, 255, 255, 0.65);
-            box-shadow: 0 12px 40px rgba(255, 105, 180, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
         }
         .card:hover::before {
-            width: 12px;
+            width: 10px;
         }
 
+        /* --- ICON DIPERKECIL --- */
         .card-icon {
-            font-size: 2.2rem;
-            width: 60px;
+            font-size: 1.8rem; /* Ukuran icon lebih kecil */
+            width: 50px;
             display: flex;
             justify-content: center;
-            margin-right: 15px;
+            margin-right: 12px;
             transition: transform 0.3s ease;
         }
 
@@ -183,19 +172,20 @@
             transform: scale(1.15);
         }
 
+        /* --- TEKS DI DALAM KOTAK DIPERKECIL --- */
         .card-text {
             display: flex;
             flex-direction: column;
         }
 
         .card h2 {
-            font-size: 1.2rem;
+            font-size: 1.1rem; /* Judul sosmed lebih kecil */
             font-weight: 700;
-            margin-bottom: 0.1rem;
+            margin-bottom: 0; /* Jarak teks h2 ke p dihilangkan agar rapat */
         }
 
         .card p {
-            font-size: 0.85rem;
+            font-size: 0.75rem; /* Deskripsi sosmed lebih kecil */
             color: #666666;
             font-weight: 600;
         }
@@ -218,20 +208,20 @@
         .saweria .card-icon { color: #FA9C23; }
 
         footer {
-            margin-top: 4rem;
+            margin-top: 3rem;
             color: #666666;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
             z-index: 1;
         }
 
+        /* Tampilan khusus untuk layar HP agar lebih pas lagi */
         @media (max-width: 480px) {
-            h1 { font-size: 2.5rem; }
-            .card { padding: 1rem; }
-            .card-icon { font-size: 1.8rem; width: 50px; margin-right: 10px; }
-            .card h2 { font-size: 1.1rem; }
-            .card p { font-size: 0.8rem; }
-            .profile-pic { width: 110px; height: 110px; }
+            h1 { font-size: 2.3rem; }
+            .card { padding: 0.7rem 1rem; }
+            .card-icon { font-size: 1.6rem; width: 45px; margin-right: 10px; }
+            .card h2 { font-size: 1rem; }
+            .card p { font-size: 0.7rem; }
         }
     </style>
 </head>
@@ -245,7 +235,7 @@
         <img src="Tak berjudul41_20260918202011.png" alt="ViuMC Character" class="profile-pic">
         
         <h1>ViuMC</h1>
-        <p>Connect with our official platforms</p>
+        <p>Connect with ViuMC official platforms</p>
     </header>
 
     <main class="links-container">
@@ -254,7 +244,7 @@
             <div class="card-icon"><i class="fa-brands fa-discord"></i></div>
             <div class="card-text">
                 <h2>Discord</h2>
-                <p>Join our community server</p>
+                <p>Join ViuMC community server</p>
             </div>
         </a>
 
@@ -270,7 +260,7 @@
             <div class="card-icon"><i class="fa-brands fa-whatsapp"></i></div>
             <div class="card-text">
                 <h2>WA Channel</h2>
-                <p>Follow for instant server updates</p>
+                <p>Follow for instant randomly Viu updates</p>
             </div>
         </a>
 
@@ -278,15 +268,16 @@
             <div class="card-icon"><i class="fa-solid fa-message"></i></div>
             <div class="card-text">
                 <h2>WA Contact</h2>
-                <p>Chat directly with the admin</p>
+                <p>Chat directly with Viu</p>
             </div>
         </a>
 
+        <!-- JANGAN LUPA GANTI LINK SAWERIA DI BAWAH INI -->
         <a href="YOUR_SAWERIA_LINK_HERE" target="_blank" class="card saweria">
             <div class="card-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
             <div class="card-text">
                 <h2>Saweria</h2>
-                <p>Support ViuMC and keep us running</p>
+                <p>Support ViuMC and keep ViuMC alive</p>
             </div>
         </a>
 
@@ -304,25 +295,22 @@
             const petal = document.createElement('div');
             petal.classList.add('petal');
             
-            // Randomize size, starting position, and falling speed
-            const size = Math.random() * 10 + 10; // Between 10px and 20px
+            const size = Math.random() * 8 + 8; // Ukuran sakura sedikit diperkecil
             petal.style.width = `${size}px`;
             petal.style.height = `${size}px`;
             
-            petal.style.left = `${Math.random() * 100}vw`; // Random horizontal start
+            petal.style.left = `${Math.random() * 100}vw`; 
             
-            const duration = Math.random() * 4 + 5; // Between 5s and 9s
+            const duration = Math.random() * 4 + 5; 
             petal.style.animationDuration = `${duration}s`;
             
             container.appendChild(petal);
             
-            // Remove the petal from the code after it finishes falling to prevent lag
             setTimeout(() => {
                 petal.remove();
             }, duration * 1000);
         }
 
-        // Spawn a new petal every 400 milliseconds
         setInterval(createPetal, 400);
     </script>
 
