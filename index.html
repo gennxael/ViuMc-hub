@@ -18,12 +18,12 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        /* Animated Dark Gradient Background to give depth */
+        /* Bright Colorful Sun & Pink Gradient Background */
         body {
-            background: linear-gradient(-45deg, #0a0a12, #18192a, #0d1b2a, #1a0b1c);
+            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #ffecd2, #fcb69f);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
-            color: #ffffff;
+            color: #333333; /* Dark text for readable contrast on light backgrounds */
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -40,23 +40,23 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Floating Light Orbs for 3D Glass Distortion */
+        /* Floating Light Orbs (Sun Yellow and Hot Pink) */
         .orb-1, .orb-2 {
             position: absolute;
             border-radius: 50%;
             filter: blur(80px);
             z-index: 0;
-            opacity: 0.5;
+            opacity: 0.6;
             animation: float 10s infinite alternate;
         }
         .orb-1 {
             width: 300px; height: 300px;
-            background: #5865F2; /* Discord Blurple */
+            background: #ffea00; /* Sun Yellow */
             top: 5%; left: -50px;
         }
         .orb-2 {
             width: 250px; height: 250px;
-            background: #25D366; /* WA Green */
+            background: #ff1493; /* Deep Pink */
             bottom: 5%; right: -50px;
             animation-delay: -5s;
         }
@@ -68,24 +68,45 @@
 
         header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Profile Picture Styling */
+        .profile-pic {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #ffffff;
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.4);
+            margin-bottom: 1rem;
+            background-color: #ffecd2;
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-pic:hover {
+            transform: scale(1.05) rotate(5deg);
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             font-weight: 700;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            background: linear-gradient(90deg, #ffffff, #b3b9c5);
+            /* Vibrant Pink/Orange text gradient */
+            background: linear-gradient(90deg, #ff0844, #ffb199);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.2rem;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
         }
 
         header p {
-            color: #b3b9c5;
+            color: #555555;
             font-size: 1.1rem;
-            font-weight: 300;
+            font-weight: 600;
         }
 
         .links-container {
@@ -93,53 +114,47 @@
             flex-direction: column;
             gap: 1.2rem;
             width: 100%;
-            max-width: 500px; /* Kept slim for mobile-first feel */
+            max-width: 500px;
             z-index: 1;
         }
 
-        /* Upgraded 3D Glass Cards */
+        /* Bright Glass Cards */
         .card {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            /* Highlight top and left borders to look like light reflecting off glass */
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            border-left: 1px solid rgba(255, 255, 255, 0.15);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-            border-right: 1px solid rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.45); /* White glassy transparent */
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
             border-radius: 16px;
             padding: 1.2rem 1.5rem;
             text-decoration: none;
-            color: white;
+            color: #333333;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
-            /* Heavy shadow to pop off the page */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 8px 32px rgba(255, 105, 180, 0.15); /* Soft pink shadow */
             transition: all 0.3s ease;
         }
 
-        /* Brand Accent Line on the left */
         .card::before {
             content: "";
             position: absolute;
             left: 0;
             top: 0;
-            width: 5px;
+            width: 6px;
             height: 100%;
             transition: width 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.65);
+            box-shadow: 0 12px 40px rgba(255, 105, 180, 0.3);
         }
         .card:hover::before {
-            width: 10px;
+            width: 12px;
         }
 
-        /* Card Content Layout */
         .card-icon {
             font-size: 2.2rem;
             width: 60px;
@@ -160,55 +175,48 @@
 
         .card h2 {
             font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.2rem;
+            font-weight: 700;
+            margin-bottom: 0.1rem;
         }
 
         .card p {
             font-size: 0.85rem;
-            color: #a0a5b5;
+            color: #666666;
+            font-weight: 600;
         }
 
-        /* Unique Brand Colors & Glows */
-        /* Discord */
+        /* Brand Colors for Light Mode */
         .discord::before { background: #5865F2; }
-        .discord .card-icon { color: #5865F2; filter: drop-shadow(0 0 12px rgba(88,101,242,0.6)); }
-        .discord:hover { box-shadow: 0 15px 35px rgba(88, 101, 242, 0.2); }
+        .discord .card-icon { color: #5865F2; }
 
-        /* TikTok */
         .tiktok::before { background: linear-gradient(180deg, #00f2fe, #ff0050); }
-        .tiktok .card-icon { color: #fff; filter: drop-shadow(0 0 10px rgba(255,255,255,0.4)); }
-        .tiktok h2 { text-shadow: 1px 1px 0px #ff0050, -1px -1px 0px #00f2fe; }
-        .tiktok:hover { box-shadow: 0 15px 35px rgba(255, 0, 80, 0.2); }
+        .tiktok .card-icon { color: #000000; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));}
+        .tiktok h2 { text-shadow: 1px 1px 0px rgba(255,0,80,0.5), -1px -1px 0px rgba(0,242,254,0.5); }
 
-        /* WhatsApp Channel */
         .wa-channel::before { background: #25D366; }
-        .wa-channel .card-icon { color: #25D366; filter: drop-shadow(0 0 12px rgba(37,211,102,0.6)); }
-        .wa-channel:hover { box-shadow: 0 15px 35px rgba(37, 211, 102, 0.2); }
+        .wa-channel .card-icon { color: #25D366; }
 
-        /* WhatsApp Contact */
         .wa-chat::before { background: #128C7E; }
-        .wa-chat .card-icon { color: #128C7E; filter: drop-shadow(0 0 12px rgba(18,140,126,0.6)); }
-        .wa-chat:hover { box-shadow: 0 15px 35px rgba(18, 140, 126, 0.2); }
+        .wa-chat .card-icon { color: #128C7E; }
 
-        /* Saweria */
         .saweria::before { background: #FA9C23; }
-        .saweria .card-icon { color: #FA9C23; filter: drop-shadow(0 0 12px rgba(250,156,35,0.6)); }
-        .saweria:hover { box-shadow: 0 15px 35px rgba(250, 156, 35, 0.2); }
+        .saweria .card-icon { color: #FA9C23; }
 
         footer {
             margin-top: 4rem;
-            color: #5a5f6b;
+            color: #666666;
             font-size: 0.9rem;
+            font-weight: 600;
             z-index: 1;
         }
 
         @media (max-width: 480px) {
-            h1 { font-size: 2.8rem; }
+            h1 { font-size: 2.5rem; }
             .card { padding: 1rem; }
             .card-icon { font-size: 1.8rem; width: 50px; margin-right: 10px; }
             .card h2 { font-size: 1.1rem; }
             .card p { font-size: 0.8rem; }
+            .profile-pic { width: 110px; height: 110px; }
         }
     </style>
 </head>
@@ -219,6 +227,9 @@
     <div class="orb-2"></div>
 
     <header>
+        <!-- This is where your Minecraft Skin Image is loaded -->
+        <img src="Tak berjudul41_20260918202011.png" alt="ViuMC Character" class="profile-pic">
+        
         <h1>ViuMC</h1>
         <p>Connect with our official platforms</p>
     </header>
