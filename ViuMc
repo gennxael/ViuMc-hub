@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViuMC - Official Hub</title>
+    
+    <!-- Import Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Import FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f1016 0%, #1a1b26 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Ambient Background Glow */
+        .background-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(88, 101, 242, 0.15);
+            filter: blur(100px);
+            border-radius: 50%;
+            top: -100px;
+            left: -100px;
+            z-index: 0;
+        }
+
+        .background-glow-2 {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(37, 211, 102, 0.1);
+            filter: blur(100px);
+            border-radius: 50%;
+            bottom: -50px;
+            right: -50px;
+            z-index: 0;
+        }
+
+        /* Header Styling */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #ffffff, #a0a5b5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: #9aa0a6;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        /* Card Container */
+        .links-container {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            max-width: 1000px;
+            padding: 0 20px;
+            z-index: 1;
+        }
+
+        /* Individual Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 2.5rem 1.5rem;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 260px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .card i {
+            font-size: 3.5rem;
+            margin-bottom: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .card h2 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #8b929a;
+            text-align: center;
+        }
+
+        /* Hover Animations & Brand Colors */
+        .card:hover {
+            transform: translateY(-12px);
+        }
+
+        .card:hover i {
+            transform: scale(1.1);
+        }
+
+        /* Discord */
+        .discord i { color: #5865F2; }
+        .discord:hover {
+            border-color: #5865F2;
+            box-shadow: 0 15px 35px rgba(88, 101, 242, 0.25);
+        }
+
+        /* TikTok */
+        .tiktok i { 
+            color: #fff; 
+            text-shadow: 2px 2px 0px #ff0050, -2px -2px 0px #00f2fe;
+        }
+        .tiktok:hover {
+            border-color: #ff0050;
+            box-shadow: 0 15px 35px rgba(255, 0, 80, 0.2);
+        }
+
+        /* WhatsApp */
+        .whatsapp i { color: #25D366; }
+        .whatsapp:hover {
+            border-color: #25D366;
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 4rem;
+            color: #5a5f6b;
+            font-size: 0.9rem;
+            z-index: 1;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.8rem; }
+            .card { width: 100%; max-width: 320px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Decorative background elements -->
+    <div class="background-glow"></div>
+    <div class="background-glow-2"></div>
+
+    <header>
+        <h1>ViuMC</h1>
+        <p>Connect with our official platforms</p>
+    </header>
+
+    <main class="links-container">
+        
+        <!-- Discord Link -->
+        <a href="YOUR_DISCORD_LINK_HERE" target="_blank" class="card discord">
+            <i class="fa-brands fa-discord"></i>
+            <h2>Discord</h2>
+            <p>Join our community server to chat and play</p>
+        </a>
+
+        <!-- TikTok Link -->
+        <a href="YOUR_TIKTOK_LINK_HERE" target="_blank" class="card tiktok">
+            <i class="fa-brands fa-tiktok"></i>
+            <h2>TikTok</h2>
+            <p>Watch our latest clips and viral highlights</p>
+        </a>
+
+        <!-- WhatsApp Link -->
+        <a href="YOUR_WHATSAPP_LINK_HERE" target="_blank" class="card whatsapp">
+            <i class="fa-brands fa-whatsapp"></i>
+            <h2>WhatsApp</h2>
+            <p>Follow our channel for instant updates</p>
+        </a>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ViuMC. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
