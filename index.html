@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ViuMC - Official Hub</title>
     
-    <!-- Import Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <!-- Import FontAwesome for Icons -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Base Reset */
         * {
             margin: 0;
             padding: 0;
@@ -20,44 +18,54 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        /* Animated Dark Gradient Background to give depth */
         body {
-            background: linear-gradient(135deg, #0f1016 0%, #1a1b26 100%);
+            background: linear-gradient(-45deg, #0a0a12, #18192a, #0d1b2a, #1a0b1c);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             color: #ffffff;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            padding: 3rem 1rem;
             position: relative;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
-        /* Ambient Background Glow */
-        .background-glow {
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Light Orbs for 3D Glass Distortion */
+        .orb-1, .orb-2 {
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: rgba(88, 101, 242, 0.15);
-            filter: blur(100px);
             border-radius: 50%;
-            top: -100px;
-            left: -100px;
+            filter: blur(80px);
             z-index: 0;
+            opacity: 0.5;
+            animation: float 10s infinite alternate;
+        }
+        .orb-1 {
+            width: 300px; height: 300px;
+            background: #5865F2; /* Discord Blurple */
+            top: 5%; left: -50px;
+        }
+        .orb-2 {
+            width: 250px; height: 250px;
+            background: #25D366; /* WA Green */
+            bottom: 5%; right: -50px;
+            animation-delay: -5s;
         }
 
-        .background-glow-2 {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: rgba(37, 211, 102, 0.1);
-            filter: blur(100px);
-            border-radius: 50%;
-            bottom: -50px;
-            right: -50px;
-            z-index: 0;
+        @keyframes float {
+            0% { transform: translateY(0px) scale(1); }
+            100% { transform: translateY(30px) scale(1.2); }
         }
 
-        /* Header Styling */
         header {
             text-align: center;
             margin-bottom: 3rem;
@@ -66,103 +74,128 @@
 
         h1 {
             font-size: 3.5rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            background: linear-gradient(90deg, #ffffff, #a0a5b5);
+            font-weight: 700;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            background: linear-gradient(90deg, #ffffff, #b3b9c5);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 0.5rem;
         }
 
         header p {
-            color: #9aa0a6;
+            color: #b3b9c5;
             font-size: 1.1rem;
             font-weight: 300;
         }
 
-        /* Card Container */
         .links-container {
             display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column;
+            gap: 1.2rem;
             width: 100%;
-            max-width: 1000px;
-            padding: 0 20px;
+            max-width: 500px; /* Kept slim for mobile-first feel */
             z-index: 1;
         }
 
-        /* Individual Cards */
+        /* Upgraded 3D Glass Cards */
         .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 2.5rem 1.5rem;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            /* Highlight top and left borders to look like light reflecting off glass */
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            border-right: 1px solid rgba(255, 255, 255, 0.02);
+            border-radius: 16px;
+            padding: 1.2rem 1.5rem;
             text-decoration: none;
             color: white;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            width: 260px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            /* Heavy shadow to pop off the page */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
         }
 
-        .card i {
-            font-size: 3.5rem;
-            margin-bottom: 1.2rem;
+        /* Brand Accent Line on the left */
+        .card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 5px;
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .card:hover::before {
+            width: 10px;
+        }
+
+        /* Card Content Layout */
+        .card-icon {
+            font-size: 2.2rem;
+            width: 60px;
+            display: flex;
+            justify-content: center;
+            margin-right: 15px;
             transition: transform 0.3s ease;
         }
 
+        .card:hover .card-icon {
+            transform: scale(1.15);
+        }
+
+        .card-text {
+            display: flex;
+            flex-direction: column;
+        }
+
         .card h2 {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
             font-weight: 600;
+            margin-bottom: 0.2rem;
         }
 
         .card p {
-            font-size: 0.9rem;
-            color: #8b929a;
-            text-align: center;
+            font-size: 0.85rem;
+            color: #a0a5b5;
         }
 
-        /* Hover Animations & Brand Colors */
-        .card:hover {
-            transform: translateY(-12px);
-        }
-
-        .card:hover i {
-            transform: scale(1.1);
-        }
-
+        /* Unique Brand Colors & Glows */
         /* Discord */
-        .discord i { color: #5865F2; }
-        .discord:hover {
-            border-color: #5865F2;
-            box-shadow: 0 15px 35px rgba(88, 101, 242, 0.25);
-        }
+        .discord::before { background: #5865F2; }
+        .discord .card-icon { color: #5865F2; filter: drop-shadow(0 0 12px rgba(88,101,242,0.6)); }
+        .discord:hover { box-shadow: 0 15px 35px rgba(88, 101, 242, 0.2); }
 
         /* TikTok */
-        .tiktok i { 
-            color: #fff; 
-            text-shadow: 2px 2px 0px #ff0050, -2px -2px 0px #00f2fe;
-        }
-        .tiktok:hover {
-            border-color: #ff0050;
-            box-shadow: 0 15px 35px rgba(255, 0, 80, 0.2);
-        }
+        .tiktok::before { background: linear-gradient(180deg, #00f2fe, #ff0050); }
+        .tiktok .card-icon { color: #fff; filter: drop-shadow(0 0 10px rgba(255,255,255,0.4)); }
+        .tiktok h2 { text-shadow: 1px 1px 0px #ff0050, -1px -1px 0px #00f2fe; }
+        .tiktok:hover { box-shadow: 0 15px 35px rgba(255, 0, 80, 0.2); }
 
-        /* WhatsApp */
-        .whatsapp i { color: #25D366; }
-        .whatsapp:hover {
-            border-color: #25D366;
-            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.2);
-        }
+        /* WhatsApp Channel */
+        .wa-channel::before { background: #25D366; }
+        .wa-channel .card-icon { color: #25D366; filter: drop-shadow(0 0 12px rgba(37,211,102,0.6)); }
+        .wa-channel:hover { box-shadow: 0 15px 35px rgba(37, 211, 102, 0.2); }
 
-        /* Footer */
+        /* WhatsApp Contact */
+        .wa-chat::before { background: #128C7E; }
+        .wa-chat .card-icon { color: #128C7E; filter: drop-shadow(0 0 12px rgba(18,140,126,0.6)); }
+        .wa-chat:hover { box-shadow: 0 15px 35px rgba(18, 140, 126, 0.2); }
+
+        /* Saweria */
+        .saweria::before { background: #FA9C23; }
+        .saweria .card-icon { color: #FA9C23; filter: drop-shadow(0 0 12px rgba(250,156,35,0.6)); }
+        .saweria:hover { box-shadow: 0 15px 35px rgba(250, 156, 35, 0.2); }
+
         footer {
             margin-top: 4rem;
             color: #5a5f6b;
@@ -170,18 +203,20 @@
             z-index: 1;
         }
 
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
+        @media (max-width: 480px) {
             h1 { font-size: 2.8rem; }
-            .card { width: 100%; max-width: 320px; }
+            .card { padding: 1rem; }
+            .card-icon { font-size: 1.8rem; width: 50px; margin-right: 10px; }
+            .card h2 { font-size: 1.1rem; }
+            .card p { font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Decorative background elements -->
-    <div class="background-glow"></div>
-    <div class="background-glow-2"></div>
+    <!-- Ambient moving orbs for background depth -->
+    <div class="orb-1"></div>
+    <div class="orb-2"></div>
 
     <header>
         <h1>ViuMC</h1>
@@ -190,25 +225,49 @@
 
     <main class="links-container">
         
-        <!-- Discord Link -->
+        <!-- Discord -->
         <a href="https://discord.gg/z5phxJZ6b" target="_blank" class="card discord">
-            <i class="fa-brands fa-discord"></i>
-            <h2>Discord</h2>
-            <p>Join our community server to chat and play</p>
+            <div class="card-icon"><i class="fa-brands fa-discord"></i></div>
+            <div class="card-text">
+                <h2>Discord</h2>
+                <p>Join our community server</p>
+            </div>
         </a>
 
-        <!-- TikTok Link -->
+        <!-- TikTok -->
         <a href="https://www.tiktok.com/@viu.mc?_r=1&_t=ZS-99uKXKsMHQ7" target="_blank" class="card tiktok">
-            <i class="fa-brands fa-tiktok"></i>
-            <h2>TikTok</h2>
-            <p>Watch our latest clips and viral highlights</p>
+            <div class="card-icon"><i class="fa-brands fa-tiktok"></i></div>
+            <div class="card-text">
+                <h2>TikTok</h2>
+                <p>Watch our latest viral clips</p>
+            </div>
         </a>
 
-        <!-- WhatsApp Link -->
-        <a href="https://whatsapp.com/channel/0029Vb6wEEiL2AU2nDW1X62j" target="_blank" class="card whatsapp">
-            <i class="fa-brands fa-whatsapp"></i>
-            <h2>WhatsApp</h2>
-            <p>Follow our channel for instant updates</p>
+        <!-- WhatsApp Channel -->
+        <a href="https://whatsapp.com/channel/0029Vb6wEEiL2AU2nDW1X62j" target="_blank" class="card wa-channel">
+            <div class="card-icon"><i class="fa-brands fa-whatsapp"></i></div>
+            <div class="card-text">
+                <h2>WA Channel</h2>
+                <p>Follow for instant server updates</p>
+            </div>
+        </a>
+
+        <!-- WhatsApp Chat / QR -->
+        <a href="https://wa.me/qr/GYII7XQQO4WXF1" target="_blank" class="card wa-chat">
+            <div class="card-icon"><i class="fa-solid fa-message"></i></div>
+            <div class="card-text">
+                <h2>WA Contact</h2>
+                <p>Chat directly with the admin</p>
+            </div>
+        </a>
+
+        <!-- Saweria Donation -->
+        <a href="YOUR_SAWERIA_LINK_HERE" target="_blank" class="card saweria">
+            <div class="card-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+            <div class="card-text">
+                <h2>Saweria</h2>
+                <p>Support ViuMC and keep us running</p>
+            </div>
         </a>
 
     </main>
